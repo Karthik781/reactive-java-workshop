@@ -1,5 +1,8 @@
 package io.javabrains.reactiveworkshop;
 
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 public class Exercise1 {
 
     public static void main(String[] args) {
@@ -7,13 +10,21 @@ public class Exercise1 {
         // Use StreamSources.intNumbersStream() and StreamSources.userStream()
 
         // Print all numbers in the intNumbersStream stream
-        // TODO: Write code here
+        StreamSources.intNumbersStream().forEach(n -> System.out.println(n));
 
         // Print numbers from intNumbersStream that are less than 5
-        // TODO: Write code here
+        Predicate<Integer> p = n -> n<5;
+        StreamSources.intNumbersStream()
+            .filter(p)
+            .forEach(n -> System.out.println(n));
+        
 
         // Print the second and third numbers in intNumbersStream that's greater than 5
-        // TODO: Write code here
+        StreamSources.intNumbersStream()
+            .filter(p.negate())
+            .skip(1)
+            .limit(2)
+            .forEach(n -> System.out.println(n));
 
         //  Print the first number in intNumbersStream that's greater than 5.
         //  If nothing is found, print -1
